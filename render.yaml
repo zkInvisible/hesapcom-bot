@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: hesapcom-kazanan-bot
+    env: python
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: USERNAMES
+        sync: false
+      - key: CHECK_INTERVAL_MINUTES
+        value: "60"
+      - key: ENABLE_SELF_PING
+        value: "true"
